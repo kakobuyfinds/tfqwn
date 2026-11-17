@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>LitBuy spreadsheet | Compare Finds, Sizes &amp; QC</title>
+  <meta name="description" content="Browse the LitBuy spreadsheet for shoes, hoodies and T-shirts from HipoBuyFind. Compare reference prices and check sizes, listing details and QC before ordering.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LitBuy spreadsheet | Compare Finds, Sizes &amp; QC">
+  <meta property="og:description" content="Browse HipoBuyFind listings by category and check size, QC and delivery costs before ordering.">
+  <meta name="theme-color" content="#17372a">
+  <!-- 文件名 index.html。上线后将 canonical 设置为本站正式 URL。Google 和 Bing 尚未提交，需在正式网址公开且站点验证完成后，通过各自的 URL 检查工具提交。 -->
+  <!-- 搜索结果参考 litbuyspreadsheet.org、rep.tools/guides/litbuy-spreadsheet、litbuyspreadsheet.io 和 lvtbuy.com/spreadsheet/shoes/。本页把分类筛选、双币参考价、逐件核对要点和到手成本计算放在同一页，无需安装扩展。 -->
+  <!-- 商品来源 https://hipobuyfind.com/。商品标题去除了来源站附加的关键词。参考价为采集时看到的目录报价。 -->
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #183328;
+      --muted: #465f52;
+      --paper: #f5f4ec;
+      --white: #fffef9;
+      --green: #17372a;
+      --lime: #d7ee9d;
+      --line: #d4ddcf;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.55 system-ui, sans-serif; }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    :focus-visible { outline: 3px solid #b45722; outline-offset: 4px; }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin-inline: auto; }
+    header { background: var(--green); color: var(--white); }
+    nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; padding-block: 1rem; border-bottom: 1px solid #5a7265; }
+    nav strong { letter-spacing: .04em; }
+    nav div { display: flex; flex-wrap: wrap; gap: 1rem; }
+    nav a { text-underline-offset: .25em; }
+    .hero { padding-block: clamp(3.5rem, 9vw, 7rem); text-align: center; }
+    h1, h2 { font-family: Georgia, serif; line-height: 1.05; letter-spacing: -.035em; }
+    h1 { margin: 0; font-size: clamp(2.75rem, 8vw, 6.25rem); }
+    h2 { margin: 0 0 1rem; font-size: clamp(2rem, 5vw, 3.3rem); }
+    .hero p { max-width: 55ch; margin: 1.25rem auto; color: #e0eadf; }
+    .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+    .button { display: inline-flex; align-items: center; min-height: 46px; padding: .65rem 1.1rem; border: 1px solid transparent; border-radius: .55rem; font-weight: 700; text-decoration: none; }
+    .primary { background: var(--lime); color: var(--green); }
+    .secondary { border-color: #b7c9bc; }
+    main section { padding-block: 3rem; }
+    main section + section { border-top: 1px solid var(--line); }
+    .intro, .sku, footer { color: var(--muted); }
+    .filters, .cost-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 195px), 1fr)); gap: 1rem; }
+    .filters { margin-top: 1.5rem; }
+    label { display: grid; gap: .35rem; font-weight: 650; }
+    input, select { width: 100%; min-height: 44px; border: 1px solid #829787; border-radius: .4rem; background: var(--white); color: var(--ink); padding: .45rem .65rem; }
+    .cards { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr)); gap: 1.25rem; }
+    .card { display: flex; flex-direction: column; overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: .85rem; }
+    .card[hidden] { display: none; }
+    .card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: #eceee7; }
+    .card-body { flex: 1; display: flex; flex-direction: column; padding: 1rem 1.15rem 1.25rem; }
+    .card h3 { margin: .25rem 0 .55rem; line-height: 1.2; }
+    .card p { margin: .25rem 0 .6rem; }
+    .sku { font-size: .85rem; }
+    .price { font-weight: 750; font-variant-numeric: tabular-nums; }
+    .card a { margin-top: auto; padding-top: .6rem; text-underline-offset: .2em; font-weight: 700; }
+    .guide { padding-left: 1.4rem; }
+    .guide li { padding: .45rem 0; max-width: 75ch; }
+    .estimate { display: block; width: fit-content; margin-top: 1rem; padding: .65rem 1rem; border-radius: .55rem; background: var(--lime); font-weight: 750; font-variant-numeric: tabular-nums; }
+    details { padding: .85rem 0; border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; font-weight: 700; }
+    details p { max-width: 75ch; }
+    footer { border-top: 1px solid var(--line); padding-block: 1.25rem; }
+  </style>
+<link rel="canonical" href="https://kakobuyfinds.github.io/tfqwn/">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Page navigation">
+        <strong>LitBuy spreadsheet</strong>
+        <div>
+          <a href="#catalog">Catalog</a>
+          <a href="#guide">Buying guide</a>
+          <a href="#cost">Cost calculator</a>
+        </div>
+      </nav>
+      <div class="hero">
+        <h1>LitBuy spreadsheet</h1>
+        <p>Compare shoes, hoodies and T-shirts from HipoBuyFind. Check the listing, size measurements and estimated delivery cost before you order.</p>
+        <div class="actions">
+          <a class="button primary" href="https://hipobuyfind.com">LitBuy spreadsheet</a>
+          <a class="button secondary" href="https://hipobuyfind.com">Buy it now</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="catalog" aria-labelledby="catalog-title">
+      <h2 id="catalog-title">HipoBuyFind product catalog</h2>
+      <p class="intro">A selection of real HipoBuyFind listings. CNY prices and approximate USD equivalents are reference values. Check the linked listing for current options and price.</p>
+      <div class="filters" id="filters" hidden>
+        <label for="query">Search by name or item ID
+          <input id="query" type="search" placeholder="e.g. sneakers or 149969">
+        </label>
+        <label for="category">Category
+          <select id="category">
+            <option value="">All categories</option>
+            <option value="shoes">Shoes</option>
+            <option value="hoodies">Hoodies</option>
+            <option value="tees">T-shirts</option>
+          </select>
+        </label>
+        <label for="sort">Sort by
+          <select id="sort">
+            <option value="featured">Featured</option>
+            <option value="ascending">Price low to high</option>
+            <option value="descending">Price high to low</option>
+          </select>
+        </label>
+      </div>
+      <p id="results" role="status"></p>
+
+      <ul class="cards" id="products">
+        <li class="card" data-category="shoes" data-price="145">
+          <img src="https://si.geilicdn.com/open1623462477-1234478995-000d00000194e28adce90aa08290_1000_1000.jpg" width="400" height="300" alt="Black and red basketball sneakers" loading="lazy" decoding="async">
+          <div class="card-body">
+            <span class="sku">Shoes · Item 149969</span>
+            <h3>Black and Red Basketball Sneakers</h3>
+            <p class="price">¥145.00 · ≈ $20.14 USD</p>
+            <p>Compare insole length with a pair that fits and check both outsoles in QC photos.</p>
+            <a href="https://hipobuyfind.com/goods-149969.html" aria-label="View Black and Red Basketball Sneakers on HipoBuyFind">View listing ↗</a>
+          </div>
+        </li>
+        <li class="card" data-category="shoes" data-price="350">
+          <img src="https://si.geilicdn.com/open1700230128-1234478995-64a0000001987b40d1cb0a8115c2_1080_1440.jpg" width="400" height="300" alt="Cream chunky sneakers with wide laces" loading="lazy" decoding="async">
+          <div class="card-body">
+            <span class="sku">Shoes · Item 148191</span>
+            <h3>Cream Chunky Sneakers with Wide Laces</h3>
+            <p class="price">¥350.00 · ≈ $48.61 USD</p>
+            <p>Confirm the color option and compare how much the parcel costs with and without the shoe box.</p>
+            <a href="https://hipobuyfind.com/goods-148191.html" aria-label="View Cream Chunky Sneakers on HipoBuyFind">View listing ↗</a>
+          </div>
+        </li>
+        <li class="card" data-category="hoodies" data-price="170">
+          <img src="https://si.geilicdn.com/open1792148229-1234478995-76d100000196f413b04f0a8133b0_800_800.jpg" width="400" height="300" alt="Fleece-lined hoodie listing photo" loading="lazy" decoding="async">
+          <div class="card-body">
+            <span class="sku">Hoodies · Item 154917</span>
+            <h3>Fleece-Lined Hoodie</h3>
+            <p class="price">¥170.00 · ≈ $23.61 USD</p>
+            <p>Compare laid-flat chest width and sleeve length with a hoodie you already wear.</p>
+            <a href="https://hipobuyfind.com/goods-154917.html" aria-label="View Fleece-Lined Hoodie on HipoBuyFind">View listing ↗</a>
+          </div>
+        </li>
+        <li class="card" data-category="tees" data-price="105">
+          <img src="https://si.geilicdn.com/open1792148229-1234478995-09a000000196efa4b3cc0aa0834c_800_800.jpg" width="400" height="300" alt="Graphic short-sleeve T-shirt listing photo" loading="lazy" decoding="async">
+          <div class="card-body">
+            <span class="sku">T-shirts · Item 154920</span>
+            <h3>Graphic Short-Sleeve T-Shirt</h3>
+            <p class="price">¥105.00 · ≈ $14.58 USD</p>
+            <p>Check the garment length and request a straight-on photo to verify print placement.</p>
+            <a href="https://hipobuyfind.com/goods-154920.html" aria-label="View Graphic Short-Sleeve T-Shirt on HipoBuyFind">View listing ↗</a>
+          </div>
+        </li>
+        <li class="card" data-category="shoes" data-price="450">
+          <img src="https://si.geilicdn.com/open1700230128-1234478995-6d07000001987b436b390a22d249_800_800.jpg" width="400" height="300" alt="Black canvas low-top sneakers with gum soles" loading="lazy" decoding="async">
+          <div class="card-body">
+            <span class="sku">Shoes · Item 148188</span>
+            <h3>Black Canvas Low-Top Sneakers with Gum Sole</h3>
+            <p class="price">¥450.00 · ≈ $62.50 USD</p>
+            <p>Use side and heel photos to compare sole alignment, stitching and the selected color.</p>
+            <a href="https://hipobuyfind.com/goods-148188.html" aria-label="View Black Canvas Low-Top Sneakers on HipoBuyFind">View listing ↗</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="guide" aria-labelledby="guide-title">
+      <h2 id="guide-title">How to use the LitBuy spreadsheet</h2>
+      <ol class="guide">
+        <li><strong>Match the source item.</strong> Open a HipoBuyFind listing and use its purchase options. If it offers a LitBuy link, match the product and selected variant against the seller listing before continuing.</li>
+        <li><strong>Compare the same variant.</strong> Choose the exact color and size before recording the item price. Save the seller link, measurements and variant so you can compare listings on equal terms.</li>
+        <li><strong>Check warehouse photos.</strong> If QC photos are available for your order, compare the received color and size against your order details. Ask about any visible defects or measurement differences before approving shipment.</li>
+        <li><strong>Get a shipping quote.</strong> Use the agent’s quote for your destination and parcel. Compare packing options, weight and dimensions. Include any known fees or import charges in your estimate.</li>
+      </ol>
+    </section>
+
+    <section id="cost" aria-labelledby="cost-title">
+      <h2 id="cost-title">Estimate your delivered cost</h2>
+      <p class="intro">Enter all amounts in CNY. Include a charge once if it already appears in another quote.</p>
+      <noscript><p>Add item price, domestic shipping, international shipping and any other quoted charges to estimate the total.</p></noscript>
+      <form id="calculator" hidden>
+        <div class="cost-fields">
+          <label for="item-price">Item price (CNY)
+            <input id="item-price" type="number" min="0" step=".01" inputmode="decimal" placeholder="145.00">
+          </label>
+          <label for="domestic">Domestic shipping (CNY)
+            <input id="domestic" type="number" min="0" step=".01" inputmode="decimal" placeholder="0.00">
+          </label>
+          <label for="international">International shipping (CNY)
+            <input id="international" type="number" min="0" step=".01" inputmode="decimal" placeholder="0.00">
+          </label>
+          <label for="extras">Other quoted charges (CNY)
+            <input id="extras" type="number" min="0" step=".01" inputmode="decimal" placeholder="0.00">
+          </label>
+        </div>
+        <output class="estimate" id="estimate" for="item-price domestic international extras" aria-live="polite">Estimated total · ¥0.00</output>
+      </form>
+    </section>
+
+    <section aria-labelledby="faq-title">
+      <h2 id="faq-title">LitBuy spreadsheet FAQ</h2>
+      <details>
+        <summary>What is a LitBuy spreadsheet?</summary>
+        <p>It is a product discovery list that helps shoppers compare finds and trace them back to seller listings. This independent guide features products listed on HipoBuyFind.</p>
+      </details>
+      <details>
+        <summary>Does the USD price include delivery?</summary>
+        <p>The USD figures are approximate conversions of the listed item price. Use the current variant price, exchange rate, shipping quote and any applicable fees to calculate the amount you may pay.</p>
+      </details>
+      <details>
+        <summary>Are listing photos and QC photos the same?</summary>
+        <p>Listing photos show how the seller presents a product. Warehouse QC photos, when available, show the item received for a specific order. Check that the photos match your order and chosen variant.</p>
+      </details>
+      <details>
+        <summary>What if a product link no longer works?</summary>
+        <p>Search HipoBuyFind by the item ID or product name. If you find another listing, recheck the seller, size chart, price and purchase options before ordering.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Independent shopping guide. Catalog source <a href="https://hipobuyfind.com">HipoBuyFind</a>.</div>
+  </footer>
+
+  <script>
+    const filters = document.getElementById('filters');
+    const query = document.getElementById('query');
+    const category = document.getElementById('category');
+    const sort = document.getElementById('sort');
+    const products = document.getElementById('products');
+    const results = document.getElementById('results');
+    const cards = Array.from(products.children);
+    const searchEntries = cards.map(card => ({
+      card,
+      text: card.textContent.toLowerCase(),
+      price: Number(card.dataset.price)
+    }));
+
+    function updateCatalog() {
+      const terms = query.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const ordered = searchEntries.slice();
+      if (sort.value !== 'featured') {
+        const direction = sort.value === 'descending' ? -1 : 1;
+        ordered.sort((first, second) => direction * (first.price - second.price));
+      }
+      let visible = 0;
+      for (const entry of ordered) {
+        const matchesCategory = !category.value || entry.card.dataset.category === category.value;
+        const matchesQuery = terms.every(term => entry.text.includes(term));
+        entry.card.hidden = !(matchesCategory && matchesQuery);
+        if (!entry.card.hidden) visible++;
+        products.append(entry.card);
+      }
+      results.textContent = visible
+        ? `${visible} of ${cards.length} listings`
+        : 'No matching listings. Try a different search or category.';
+    }
+
+    filters.removeAttribute('hidden');
+    query.addEventListener('input', updateCatalog);
+    category.addEventListener('change', updateCatalog);
+    sort.addEventListener('change', updateCatalog);
+    updateCatalog();
+
+    const calculator = document.getElementById('calculator');
+    const estimate = document.getElementById('estimate');
+    const costFields = Array.from(calculator.querySelectorAll('input'));
+    const currency = new Intl.NumberFormat('en', { style: 'currency', currency: 'CNY' });
+
+    calculator.hidden = false;
+    calculator.addEventListener('submit', event => event.preventDefault());
+    calculator.addEventListener('input', () => {
+      if (costFields.some(field => !field.validity.valid)) {
+        estimate.textContent = 'Enter non-negative amounts with up to two decimal places.';
+        return;
+      }
+      const totalFen = costFields.reduce((sum, field) => {
+        return sum + Math.round((field.valueAsNumber || 0) * 100);
+      }, 0);
+      estimate.textContent = `Estimated total · ${currency.format(totalFen / 100)}`;
+    });
+  </script>
+</body>
+</html>
